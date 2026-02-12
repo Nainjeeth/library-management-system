@@ -1,0 +1,117 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>
+        Welcome to Student portal
+    </title>
+    <meta name="description" />
+    <link rel="shortcut icon" href="images/fevicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" data-name="skins" />
+        <link rel="stylesheet" href="css/layout/wide.css" data-name="layout" />
+        <script src="css/date_time.js" type="text/javascript"></script>
+        <link href="css/login.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body style="margin:0; background:#5B6CF1;">
+    <form method="POST" action="/" id="aspnetForm">
+    <div>
+        <div id="header">
+            <div id="top-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 top-info hidden-xs">
+                            <span style="font-size: medium;"><a href="" cssclass="dropdown-toggle waves-effect waves-light">
+                                <span id="date_time"></span>
+                                <script type="text/javascript">    
+                                   window.onload = date_time('date_time');
+                                </script>
+                            </a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            
+    <div class="texture-section texture1" style="margin:0; background:#5B6CF1;" onkeypress="return WebForm_FireDefaultButton(event, 'ctl00_Content_btn_Submit')">
+        <div class="container">
+            <div class="row sub_content">
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                <input type="hidden" name="ctl00$Content$hdn_IID" id="ctl00_Content_hdn_IID" value="6" />
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <!-- Login screen start -->
+                    <div class="login-screen">
+                        <form method="post" action="/" id="aspnetForm">
+                            <div class="login-box">
+                                <a href='http://www.brecw.ac.in/' class="login-logo">
+                                    <img id="ctl00_Content_img_logo" alt="SLV-Edu.in" src="images/lib.png" style="width: 300px; height: 300px;" />
+                                </a>
+                                <h4>
+                                    Welcome back,<br />
+                                    Please Login to your Account.</h4><br />
+                                    
+                                        <div class="form-group">
+                                            <input name="username" id="username" type="text" class="form-control" placeholder="User ID / EmpID / Student ID" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input name="password" type="password" id="password" class="form-control" placeholder="Password" autocomplete="off" required/><input type="hidden" name="ctl00$Content$txtPwdHash" id="ctl00_Content_txtPwdHash" />
+                                        </div>
+                                    
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="col-lg-6 col-md-6 col-sm-6" >
+                                                <input type="submit" name="ctl00$Content$btn_Submit" value="Login" onclick="return AdminLoginvalidateReg();" id="ctl00_Content_btn_Submit" type="submit" class="btn btn-info" style="width:100%; " />
+                                            </div>
+                                        </div>
+                                    
+                                
+                            </div><br /><br /><br />
+                        </form>
+                    </div>
+                    <!-- Logi screen end -->
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+        <div class="footer_bottom">
+        <div class="container">
+            <div class="row">
+              
+                <div class="col-sm-2" align="center" style="vertical-align:middle;"><!-- Start of SimpleHitCounter Code -->
+
+
+</div>
+              
+                <div class="col-sm-3" style="float:right; text-align:center; ">
+                    <div class="widget_content" style="padding:0; margin:0;">
+                        <div class="footer_social">
+                        <ul class="footbot_social">
+                            <li><a class="fb" href="#." data-placement="top" data-toggle="tooltip" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a class="twtr" href="#." data-placement="top" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                            
+                            <li><a class="skype" href="#." data-placement="top" data-toggle="tooltip" title="Skype"><i class="fa fa-skype"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    <script>
+        // Check if there is an error query parameter in the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('error')) {
+            alert('Incorrect username or password. Please try again.');
+        }
+    </script>
+</form>
+</body>
+</html>

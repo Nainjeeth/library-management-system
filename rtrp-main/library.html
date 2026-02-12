@@ -1,0 +1,223 @@
+<!--student page-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>
+	    Welcome to Student Portal
+    </title>
+    <meta name="description" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" data-name="skins" />
+    <link rel="stylesheet" href="css/layout/wide.css" data-name="layout" />
+    <link href="css/login.css" rel="stylesheet" type="text/css" />
+    <style>
+            .logout {
+            background-color: rgb(204, 9, 9);
+            border: none;
+            padding: 7px;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="home">
+        <header id="header">
+        <div id="top-bar">
+            <div class="container"><input type="hidden" name="ctl00$hdn_Session" id="ctl00_hdn_Session" value="22321A1254" />
+                
+                    <div class="row">                    
+                    <div class="col-sm-12 top-info">
+                    <div style="float:left;"> <span id="ctl00_lbl_Institution" style="color:White; font-size:1em; font-weight:bold; width:auto;">Student Portal: Library</span></div>
+                    <div style="float:right;"><table width="100%">
+                    <tr>
+                    <td style="width:auto;" align="right"><span  id="user-name"></span></td>
+                    <td width="10%" align="right">  <button class="logout" onclick="logout()">LogOut</button> </td>
+                    </tr>
+                    </table></div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        
+        
+    </header>
+    <div class="wrapper texture-section texture1" style="min-height: 100vh; width: 100%;
+    margin-bottom: 20px;">
+    
+<div id="ctl00_Content_up">
+
+    <div class="container">
+        <input type="hidden" name="ctl00$Content$hdn_QueryString" id="ctl00_Content_hdn_QueryString" value="0" />
+        <input type="hidden" name="ctl00$Content$hdn_Session" id="ctl00_Content_hdn_Session" value="22321A1231" />
+        <input type="hidden" name="ctl00$Content$hdn_StudentID" id="ctl00_Content_hdn_StudentID" value="0" />
+        <input type="hidden" name="ctl00$Content$hdn_LastDate" id="ctl00_Content_hdn_LastDate" value="0" />
+        <div class="row sub_content" style="padding: 0; margin: 0;">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <div class="mycard-title">
+                           Dashboard
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div id="ctl00_Content_pnl_print">
+	
+                                <table id="ctl00_Content_dl_Data" cellspacing="0" style="border-collapse:collapse;">
+<tr>
+<td>
+                                          <table id="scrollVertical" class="table table-borderless" align="center" style="table-layout: fixed;
+                                               width: 90%;">
+                                               <tbody>
+                                                    <tr>
+                                                         <td width="24%">
+                                                              Student ID
+                                                         </td>
+                                                         <td width="1%">
+                                                              :
+                                                         </td>
+                                                         <td width="50%" id="student-id"></td>
+                                                        
+                                                    </tr>
+                                                    <tr>
+                                                         <td>
+                                                              Name
+                                                         </td>
+                                                         <td>
+                                                              :
+                                                         </td>
+                                                         <td width="50%" id="name"></td>
+                                                    </tr>
+                                                    <tr>
+                                                         <td>
+                                                              Class
+                                                         </td>
+                                                         <td>
+                                                              :
+                                                         </td>
+                                                         <td width="50%" id="class">2nd-IT-A</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                             Academic Year
+                                                        </td>
+                                                        <td>
+                                                             :
+                                                        </td>
+                                                        <td width="50%" id="academic-year">2023-24</td>
+                                                   </tr>
+                                                    <tr>
+                                                    <td>
+                                                         Phone-no
+                                                    </td>
+                                                    <td>
+                                                         :
+                                                    </td>
+                                                    <td width="50%" id="phone-no"></td>
+                                               </tr>
+                                               <tr>
+                                                <td>
+                                                     Email
+                                                </td>
+                                                <td>
+                                                     :
+                                                </td>
+                                                <td width="50%" id="email-id"></td>
+                                           </tr>
+                                                </tbody>
+                                            </table>
+                                       </td>
+</tr>
+</table>
+                             
+</div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+
+                                 
+                                        <table id="copy-print-csv" width="100%" border="1" align="center" class="table table-bordered table-hover"
+                                            style="font-family: Tahoma; font-size: 13px; line-height: 18px; vertical-align: middle; border-collapse: collapse; border: 1px solid #8A8C8A; margin: 0; padding: 0;">
+                                            <thead>
+                                                <tr>
+                                                    <th>SNo
+                                                    </th>
+                                                    <th>Book No
+                                                    </th>
+                                                    <th>Title of the Book
+                                                    </th>
+                                                    <th>Borrowed Date
+                                                    </th>
+                                                     <th>Renewal Date
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="booksTableBody">
+                                            </tbody>
+                                         </table>
+
+                                        <script>
+                                            
+                                            document.addEventListener('DOMContentLoaded', function () {
+                                                    fetchBooks();
+                                                });
+
+                                                function fetchBooks() {
+                                                    fetch('/view-books')
+                                                        .then(response => response.json())
+                                                        .then(data => {
+                                                            if (data.success) {
+                                                                const tableBody = document.getElementById('booksTableBody');
+                                                                tableBody.innerHTML = '';
+                                                                data.books.forEach((book, index) => {
+                                                                    const row = document.createElement('tr');
+                                                                    row.innerHTML = `
+                                                                        <td>${index + 1}</td> <!-- Serial Number -->
+                                                                        <td>${book.book_no}</td>
+                                                                        <td>${book.title}</td>
+                                                                        <td>${book.borrowed_date}</td>
+                                                                        <td>${book.renewal_date}</td>
+                                                                    `;
+                                                                    tableBody.appendChild(row);
+                                                                });
+                                                            } else {
+                                                                console.error('Failed to fetch books');
+                                                            }
+                                                        });
+                                                }
+
+                                            function logout() {
+                                                    window.location.href = "/logout";
+                                                }
+
+                                                // Fetch user details from session
+                                                window.onload = function() {
+                                                    fetch('/user-details')
+                                                        .then(response => response.json())
+                                                        .then(data => {
+                                                            document.getElementById('student-id').innerText = data.student_id;
+                                                            document.getElementById('name').innerText = data.name;
+                                                            document.getElementById('phone-no').innerText = data.phone;
+                                                            document.getElementById('email-id').innerText = data.email;
+                                                        })
+                                                        .catch(error => console.error('Error fetching user details:', error));
+                                                };
+                                        </script>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+</section>  
+</body>
+</html>

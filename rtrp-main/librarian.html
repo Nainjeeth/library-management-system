@@ -1,0 +1,313 @@
+<!--librarian-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Welcome to Library Portal</title>
+    <meta name="description" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" data-name="skins" />
+    <link rel="stylesheet" href="css/layout/wide.css" data-name="layout" />
+    <link href="css/login.css" rel="stylesheet" type="text/css" />
+   
+    <style>
+        input[type="text"] {
+            border: none;
+            outline: none;
+        }
+
+        .logout {
+            background-color: rgb(204, 9, 9);
+            border: none;
+            padding: 7px;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .hidden-column {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="home">
+        <header id="header">
+            <div id="top-bar">
+                <div class="container">
+                    <input type="hidden" name="ctl00$hdn_Session" id="ctl00_hdn_Session" value="22321A1254" />
+                    <div class="row">
+                        <div class="col-sm-12 top-info">
+                            <div style="float:left;">
+                                <span id="ctl00_lbl_Institution" style="color:White; font-size:1em; font-weight:bold; width:auto;">Library</span>
+                            </div>
+                            <div style="float:right;">
+                                <table width="100%">
+                                    <tr>
+                                        <td style="width:auto;" align="right">
+                                            <span id="ctl00_lbl_Session" style="color:White; font-size:1em;"></span>
+                                        </td>
+                                        <td width="10%" align="right">
+                                            <button class="logout" onclick="logout()">LogOut</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="wrapper texture-section texture1" style="min-height: 100vh; width: 100%; margin-bottom: 20px;">
+            <div id="ctl00_Content_up">
+                <div class="container">
+                    <div class="row sub_content" style="padding: 0; margin: 0;">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="card h-100">
+                                <div class="card-header">
+                                    <div class="mycard-title">Dashboard</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div id="ctl00_Content_pnl_print">
+                                            <table id="ctl00_Content_dl_Data" cellspacing="0" style="border-collapse:collapse;">
+                                                <tr>
+                                                    <td>
+                                                        <table id="scrollVertical" class="table table-borderless" align="center" style="table-layout: fixed; width: 90%;">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td width="24%">Student ID</td>
+                                                                    <td width="1%">:</td>
+                                                                    <td width="50%" id="student-id"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Name</td>
+                                                                    <td>:</td>
+                                                                    <td width="50%" id="name"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Class</td>
+                                                                    <td>:</td>
+                                                                    <td width="50%" id="class">2nd-IT-A</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Academic Year</td>
+                                                                    <td>:</td>
+                                                                    <td width="50%" id="academic-year">2023-24</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Phone-no</td>
+                                                                    <td>:</td>
+                                                                    <td width="50%" id="phone-no"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Email</td>
+                                                                    <td>:</td>
+                                                                    <td width="50%" id="email-id"></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <table id="copy-print-csv myTable" width="100%" border="1" align="center" class="table table-bordered table-hover" style="font-family: Tahoma; font-size: 13px; line-height: 18px; vertical-align: middle; border-collapse: collapse; border: 1px solid #8A8C8A; margin: 0; padding: 0;">
+                                                <tr>
+                                                    <th>SNo</th>
+                                                    <th class="hidden-column">Book ID</th>
+                                                    <th>Book No</th>
+                                                    <th>Title of the Book</th>
+                                                    <th>Borrowed Date</th>
+                                                    <th>Renewal Date</th>
+                                                    <th>Renew</th>
+                                                    <th>Return</th>
+                                                </tr>
+                                                <tbody id="booksTableBody">
+                                                </tbody>
+                                            </table>
+                                            <br>
+                                            <button id="addBookButton">Add Book</button>
+                                            <script>
+              document.addEventListener('DOMContentLoaded', function () {
+            fetchBooks();
+
+            document.getElementById('addBookButton').addEventListener('click', function () {
+                addBookRow();
+            });
+        });
+
+        function fetchBooks() {
+            fetch('/get-books')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const tableBody = document.getElementById('booksTableBody');
+                        tableBody.innerHTML = '';
+                        data.books.forEach((book, index) => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${index + 1}</td> <!-- Serial Number -->
+                                <td class="hidden-column">${book.book_id}</td>
+                                <td>${book.book_no}</td>
+                                <td>${book.title}</td>
+                                <td>${book.borrowed_date}</td>
+                                <td>${book.renewal_date}</td>
+                                <td><button onclick="renewBook(${book.book_id})">Renew</button></td>
+                                <td><button onclick="deleteBook(${book.book_id})">Delete</button></td>
+                            `;
+                            tableBody.appendChild(row);
+                        });
+                    } else {
+                        console.error('Failed to fetch books');
+                    }
+                });
+        }
+
+        function renewBook(bookId) {
+            const borrowedDate = new Date().toISOString().split('T')[0];
+            const renewalDate = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+
+            const data = {
+                book_id: bookId,
+                borrowed_date: borrowedDate,
+                renewal_date: renewalDate
+            };
+
+            fetch('/renew-book', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    fetchBooks();  // Refresh the table to show updated dates
+                } else {
+                    alert('Failed to renew book');
+                }
+            })
+            .catch(error => {
+                console.error("Error in renew book fetch:", error); // Log any fetch errors
+            });
+        }
+
+        function addBookRow() {
+            const tableBody = document.getElementById('booksTableBody');
+            if (tableBody.rows.length >= 8) {
+                alert('You cannot add more than 8 books.');
+                return;
+            }
+            const newRowIndex = tableBody.rows.length + 1;
+            const borrowedDate = new Date().toISOString().split('T')[0];
+            const renewalDate = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+            const row = document.createElement('tr');
+            const serialNo = tableBody.rows.length + 1; // Get the next serial number
+            row.innerHTML = `
+                <td>${serialNo}</td>
+                <td class="hidden-column"></td>
+                <td><input type="text" id="newBookNo" placeholder="Book No"></td>
+                <td><input type="text" id="newBookTitle" placeholder="Title"></td>
+                <td>${new Date().toISOString().split('T')[0]}</td>
+                <td>${new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]}</td>
+                <td><button onclick="renewBook('${borrowedDate}', '${renewalDate}')">Renew</button></td>
+                <td><button onclick="saveNewBook()">Save</button></td>
+            `;
+            tableBody.appendChild(row);
+        }
+
+        function saveNewBook() {
+            const bookNo = document.getElementById('newBookNo').value;
+            const title = document.getElementById('newBookTitle').value;
+            const borrowedDate = new Date().toISOString().split('T')[0];
+            const renewalDate = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+
+            if (!bookNo || !title) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            const data = {
+                book_no: bookNo,
+                title: title,
+                borrowed_date: borrowedDate,
+                renewal_date: renewalDate
+            };
+
+            fetch('/add-book', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    fetchBooks();  // Refresh the table to show new book
+                } else {
+                    alert('Failed to add book');
+                }
+            })
+            .catch(error => {
+                console.error("Error in add book fetch:", error); // Log any fetch errors
+            });
+        }
+        function deleteBook(bookId) {
+            const data = {
+                book_id: bookId
+            };
+
+            fetch('/delete-book', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    fetchBooks();  // Refresh the table to show updated data
+                } else {
+                    alert('Failed to delete book');
+                }
+            })
+            .catch(error => {
+                console.error("Error in delete book fetch:", error); // Log any fetch errors
+            });
+        }
+                                                function logout() {
+                                                    window.location.href = "/logout";
+                                                }
+
+                                                // Fetch user details from session
+                                                window.onload = function() {
+                                                    fetch('/user-details')
+                                                        .then(response => response.json())
+                                                        .then(data => {
+                                                            document.getElementById('student-id').innerText = data.student_id;
+                                                            document.getElementById('name').innerText = data.name;
+                                                            document.getElementById('phone-no').innerText = data.phone;
+                                                            document.getElementById('email-id').innerText = data.email;
+                                                        })
+                                                        .catch(error => console.error('Error fetching user details:', error));
+                                                };
+                                            </script>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
