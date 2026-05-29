@@ -27,8 +27,6 @@ A simple and efficient Library Management System developed to manage books, stud
 - View available books
 - Borrow and return books
 
-## Screenshots
-(Add project screenshots here)
 
 ## Installation
 
